@@ -1,67 +1,67 @@
 ﻿# NutriTrack+
 
-NutriTrack+ is a React + Vite PWA for nutrition tracking and weekly meal planning.
+NutriTrack+ es una PWA con React + Vite para seguimiento nutricional y planificación semanal de comidas.
 
-## Local setup
+## Instalación local
 
-1. Clone:
+1. Clonar:
 ```bash
 git clone https://github.com/ximosa/NutriTrack-.git
 cd NutriTrack-
 ```
 
-2. Install deps:
+2. Instalar dependencias:
 ```bash
 npm install
 ```
 
-3. Create `.env` from `.env.example` and set values:
+3. Crear `.env` a partir de `.env.example` y completar valores:
 ```env
-VITE_USDA_API_KEY="YOUR_USDA_API_KEY"
-VITE_AI_PROXY_URL="https://your-backend.example.com/api/weekly-plan"
+VITE_USDA_API_KEY="TU_API_KEY_USDA"
+VITE_AI_PROXY_URL="https://tu-backend.example.com/api/weekly-plan"
 ```
 
-4. Run dev server:
+4. Ejecutar en desarrollo:
 ```bash
 npm run dev
 ```
 
-## Deploy to GitHub Pages (without workflow)
+## Despliegue en GitHub Pages (sin workflow)
 
-This project is already configured with `gh-pages` and deploy script.
+Este proyecto ya está configurado con `gh-pages` y script de despliegue.
 
 ```bash
 npm run deploy
 ```
 
-That command builds `dist/` and publishes it to branch `gh-pages`.
+Ese comando compila `dist/` y lo publica en la rama `gh-pages`.
 
-Configured repo path:
-- GitHub repo: `ximosa/NutriTrack-`
-- Vite `base`: `/NutriTrack-/`
+Configuración usada:
+- Repositorio: `ximosa/NutriTrack-`
+- `base` de Vite: `/NutriTrack-/`
 
-Final URL:
+URL final:
 - `https://ximosa.github.io/NutriTrack-/`
 
-## Environment variables and security
+## Variables de entorno y seguridad
 
-Important:
-- Everything inside a Vite frontend build can be inspected by users.
-- Do not put private API keys in frontend `.env`.
+Importante:
+- Todo lo que se compile en una app Vite frontend puede inspeccionarse en el navegador.
+- No pongas claves privadas en `.env` del frontend.
 
-Safe in frontend:
-- Public values like `VITE_USDA_API_KEY` (or use `DEMO_KEY` fallback).
-- Public URLs like `VITE_AI_PROXY_URL`.
+Seguro en frontend:
+- Valores públicos como `VITE_USDA_API_KEY` (o usar `DEMO_KEY` de fallback).
+- URLs públicas como `VITE_AI_PROXY_URL`.
 
-Never in frontend:
-- `GEMINI_API_KEY`, OpenAI secret keys, DB passwords, admin tokens.
+Nunca en frontend:
+- `GEMINI_API_KEY`, claves secretas de OpenAI, contraseñas de base de datos, tokens admin.
 
-Recommended secure architecture:
-1. Keep private Gemini key in a backend (Vercel Functions, Netlify Functions, Cloudflare Workers, Render, etc.).
-2. Expose one endpoint like `POST /api/weekly-plan`.
-3. Frontend calls that endpoint using `VITE_AI_PROXY_URL`.
+Arquitectura recomendada:
+1. Guardar la clave privada de Gemini en un backend (Vercel Functions, Netlify Functions, Cloudflare Workers, Render, etc.).
+2. Exponer un endpoint tipo `POST /api/weekly-plan`.
+3. Hacer que el frontend llame a ese endpoint usando `VITE_AI_PROXY_URL`.
 
-## Notes
+## Notas
 
-- `.env` is ignored by git.
-- `.env.example` is versioned as template only.
+- `.env` está ignorado por git.
+- `.env.example` sí se versiona como plantilla.
