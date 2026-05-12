@@ -1,0 +1,6 @@
+{
+  "name": "NutriTrack+",
+  "description": "Premium nutrition and macro tracking PWA with intelligent meal planning, USDA integration, and futuristic design.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["pwa", "ai-planning", "nutrition-tracking"]
+}
