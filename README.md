@@ -1,99 +1,67 @@
-# NutriTrack+ 🥗
+﻿# NutriTrack+
 
-NutriTrack+ es una PWA (Progressive Web App) premium y moderna diseñada para el seguimiento nutricional inteligente. Utiliza Inteligencia Artificial (Google Gemini) para generar planes alimenticios personalizados y se integra con APIs globales como USDA y Open Food Facts para ofrecer datos precisos de calorías y macronutrientes.
+NutriTrack+ is a React + Vite PWA for nutrition tracking and weekly meal planning.
 
-![License](https://img.shields.io/badge/license-Apache--2.0-green)
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![PWA](https://img.shields.io/badge/PWA-Ready-orange)
+## Local setup
 
-## ✨ Características Principales
-
-- **Dashboard Visual:** Resumen diario de calorías, proteínas, carbohidratos, grasas y agua con un diseño futurista.
-- **Buscador de Alimentos Inteligente:** Integración con **USDA FoodData Central** y **Open Food Facts** para encontrar productos de todo el mundo.
-- **Planificador AI:** Generación de menús semanales personalizados mediante **Google Gemini AI** basados en tus objetivos.
-- **Modo Offline:** Funciona sin conexión gracias a Service Workers e IndexedDB.
-- **Tracker de Macronutrientes:** Control estricto de tus metas diarias con barras de progreso animadas.
-- **Registro de Hidratación:** Seguimiento fácil de tu consumo de agua diario.
-- **Diseño Mobile-First:** Experiencia premium similar a una app nativa con animaciones fluidas y glassmorphism.
-
-## 🛠️ Stack Tecnológico
-
-- **Frontend:** React 19 + TypeScript
-- **Estilos:** Tailwind CSS (Vite Discovery)
-- **Animaciones:** Motion (framer-motion)
-- **Base de Datos Local:** IndexedDB (vía `idb`)
-- **Iconos:** Lucide React
-- **Gráficos:** Recharts
-- **IA:** Google Gemini API
-- **APIs de Nutrición:** USDA API & Open Food Facts API
-
-## 🚀 Instalación y Desarrollo Local
-
-Sigue estos pasos para ejecutar el proyecto en tu máquina local:
-
-1. **Clonar el repositorio:**
-   ```bash
-   git clone https://github.com/tu-usuario/nutritrack-plus.git
-   cd nutritrack-plus
-   ```
-
-2. **Instalar dependencias:**
-   ```bash
-   npm install
-   ```
-
-3. **Configurar variables de entorno:**
-   Crea un archivo `.env` en la raíz y añade tus API Keys:
-   ```env
-   GEMINI_API_KEY="TU_API_KEY_DE_GOOGLE_AI_STUDIO"
-   VITE_USDA_API_KEY="TU_API_KEY_DE_USDA"
-   ```
-
-4. **Iniciar servidor de desarrollo:**
-   ```bash
-   npm run dev
-   ```
-   La aplicación estará disponible en `http://localhost:3000`.
-
-## 📦 Despliegue en GitHub Pages
-
-Esta aplicación está configurada para desplegarse fácilmente en GitHub Pages.
-
-### Paso 1: Configurar el Base Path
-Si tu repositorio **no** está en la raíz de tu dominio (ej: `usuario.github.io/proyecto/`), debes editar `vite.config.ts`:
-
-```typescript
-// vite.config.ts
-export default defineConfig({
-  base: '/nombre-de-tu-repo/', // Añade esta línea
-  // ... resto de la configuración
-})
+1. Clone:
+```bash
+git clone https://github.com/ximosa/NutriTrack-.git
+cd NutriTrack-
 ```
 
-### Paso 2: Desplegar
-Ejecuta el siguiente comando para compilar y subir a la rama `gh-pages`:
+2. Install deps:
+```bash
+npm install
+```
+
+3. Create `.env` from `.env.example` and set values:
+```env
+VITE_USDA_API_KEY="YOUR_USDA_API_KEY"
+VITE_AI_PROXY_URL="https://your-backend.example.com/api/weekly-plan"
+```
+
+4. Run dev server:
+```bash
+npm run dev
+```
+
+## Deploy to GitHub Pages (without workflow)
+
+This project is already configured with `gh-pages` and deploy script.
 
 ```bash
 npm run deploy
 ```
 
-La aplicación se construirá en la carpeta `dist/` y se subirá automáticamente.
+That command builds `dist/` and publishes it to branch `gh-pages`.
 
-## 📱 Instalación PWA
+Configured repo path:
+- GitHub repo: `ximosa/NutriTrack-`
+- Vite `base`: `/NutriTrack-/`
 
-Al ser una Progressive Web App, puedes instalarla en tu dispositivo:
-- **En iOS (Safari):** Pulsa el botón "Compartir" y selecciona "Añadir a la pantalla de inicio".
-- **En Android (Chrome):** Aparecerá un banner de instalación o puedes ir al menú y seleccionar "Instalar aplicación".
+Final URL:
+- `https://ximosa.github.io/NutriTrack-/`
 
-## 🔑 Obtención de API Keys
+## Environment variables and security
 
-- **Gemini AI:** Obtenla gratis en [Google AI Studio](https://aistudio.google.com/).
-- **USDA API:** Regístrate en [FDC USDA](https://fdc.nal.usda.gov/api-key-signup.html).
-- **Open Food Facts:** No requiere API Key para búsquedas básicas.
+Important:
+- Everything inside a Vite frontend build can be inspected by users.
+- Do not put private API keys in frontend `.env`.
 
-## 📄 Licencia
+Safe in frontend:
+- Public values like `VITE_USDA_API_KEY` (or use `DEMO_KEY` fallback).
+- Public URLs like `VITE_AI_PROXY_URL`.
 
-Este proyecto está bajo la Licencia Apache 2.0. Consulta el archivo `LICENSE` para más detalles.
+Never in frontend:
+- `GEMINI_API_KEY`, OpenAI secret keys, DB passwords, admin tokens.
 
----
-Desarrollado con ❤️ para una vida más saludable.
+Recommended secure architecture:
+1. Keep private Gemini key in a backend (Vercel Functions, Netlify Functions, Cloudflare Workers, Render, etc.).
+2. Expose one endpoint like `POST /api/weekly-plan`.
+3. Frontend calls that endpoint using `VITE_AI_PROXY_URL`.
+
+## Notes
+
+- `.env` is ignored by git.
+- `.env.example` is versioned as template only.

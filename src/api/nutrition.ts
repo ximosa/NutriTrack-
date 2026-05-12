@@ -4,7 +4,7 @@ const USDA_BASE_URL = 'https://api.nal.usda.gov/fdc/v1';
 const OFF_BASE_URL = 'https://world.openfoodfacts.org/cgi';
 const OFF_SEARCH_URL = 'https://world.openfoodfacts.org/api/v2';
 
-const USDA_KEY = process.env.VITE_USDA_API_KEY || 'DEMO_KEY';
+const USDA_KEY = import.meta.env.VITE_USDA_API_KEY || 'DEMO_KEY';
 
 export async function searchFood(query: string): Promise<FoodItem[]> {
   try {
