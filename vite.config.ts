@@ -4,7 +4,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/NutriTrack-/',
+  base: process.env.VERCEL ? '/' : '/NutriTrack-/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
