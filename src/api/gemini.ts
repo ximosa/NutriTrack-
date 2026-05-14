@@ -1,10 +1,7 @@
 ﻿import { UserProfile, WeeklyPlan } from '../types';
 
 export async function generateWeeklyPlan(profile: UserProfile): Promise<WeeklyPlan> {
-  const proxyUrl = import.meta.env.VITE_AI_PROXY_URL as string | undefined;
-  if (!proxyUrl) {
-    throw new Error('Falta VITE_AI_PROXY_URL. Configura un backend para generar planes IA de forma segura.');
-  }
+  const proxyUrl = (import.meta.env.VITE_AI_PROXY_URL as string | undefined) || '/api/weekly-plan';
 
   try {
     const response = await fetch(proxyUrl, {
