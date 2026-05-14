@@ -76,12 +76,18 @@ export default function FoodSearch() {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             onClick={() => setSelectedFood(food)}
-            className="glass p-3 rounded-2xl flex items-center cursor-pointer active:scale-98 transition-all"
+            className="glass p-3 rounded-2xl flex items-center cursor-pointer active:scale-98 transition-all hover:bg-white/[0.08]"
           >
             {food.imageUrl ? (
-              <img src={food.imageUrl} alt={food.name} className="w-12 h-12 rounded-xl object-cover" />
+              <img
+                src={food.imageUrl}
+                alt={food.name}
+                className="w-14 h-14 rounded-xl object-cover bg-white/5"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+              />
             ) : (
-              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-[var(--accent-green)]">
+              <div className="w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-[var(--accent-green)]">
                 <Utensils size={20} />
               </div>
             )}
@@ -110,16 +116,22 @@ export default function FoodSearch() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[var(--bg-deep)] flex flex-col pt-12"
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
           >
              <button onClick={() => setSelectedFood(null)} className="absolute top-6 left-6 w-10 h-10 rounded-full glass flex items-center justify-center">
-                <ChevronLeft size={20} />
+               <ChevronLeft size={20} />
              </button>
 
-             <div className="px-6 flex-1 overflow-y-auto">
-                <div className="aspect-square w-full rounded-3xl glass mb-8 flex items-center justify-center overflow-hidden">
+             <div className="glass w-full max-w-md max-h-[90vh] rounded-3xl p-5 overflow-y-auto">
+                <div className="h-56 w-full rounded-2xl bg-white/5 mb-6 flex items-center justify-center overflow-hidden">
                    {selectedFood.imageUrl ? (
-                     <img src={selectedFood.imageUrl} alt={selectedFood.name} className="w-full h-full object-cover" />
+                     <img
+                       src={selectedFood.imageUrl}
+                       alt={selectedFood.name}
+                       className="w-full h-full object-cover"
+                       loading="lazy"
+                       referrerPolicy="no-referrer"
+                     />
                    ) : (
                      <Zap size={64} className="text-[var(--accent-green)] opacity-50" />
                    )}

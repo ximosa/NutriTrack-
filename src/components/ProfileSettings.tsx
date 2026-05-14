@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useNutrition } from '../store/NutritionContext';
 import { UserProfile } from '../types';
 import { motion } from 'motion/react';
@@ -22,7 +22,7 @@ export default function ProfileSettings() {
     targetFat: 70
   });
 
-  const handleSave = async (e: React.FormEvent) => {
+  const handleSave = async (e: FormEvent) => {
     e.preventDefault();
     
     // Simple BMR + TDEE calc if not manual

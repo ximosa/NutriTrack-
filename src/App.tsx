@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Home, Search, Calendar, User, Plus, Utensils, Droplets, Target } from 'lucide-react';
 import { NutritionProvider, useNutrition } from './store/NutritionContext';
@@ -80,7 +80,7 @@ function MainApp() {
   );
 }
 
-function NavButton({ active, onClick, icon, label }: { active: boolean; onClick: () => void; icon: React.ReactNode; label: string }) {
+function NavButton({ active, onClick, icon, label }: { active: boolean; onClick: () => void; icon: ReactNode; label: string }) {
   return (
     <button
       onClick={onClick}
